@@ -1,0 +1,78 @@
+/* ケンミル */ /* 神様最高 */
+
+@import url("https://fonts.googleapis.com/css2?family=Glory:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+:root {
+  /* Colors */
+  --color-default-01: #ffffff;
+  --color-default-02: #808080;
+  --color-default-03: #1d1e20;
+  --color-theme-01: #4c0fdb;
+  /* Padding */
+  --padding-default: 0.25rem;
+  /* Border */
+  --border-default: 1px solid #ffffff;
+  --border-radius-default: 15px;
+  /* Shadows */
+  --shadow-default: 3px 3px 3px #00000080;
+  --shadow-button: 5px 5px 5px #646464;
+  --shadow-button-hover: 2px 2px 2px #646464;
+  /* Margin */
+  --margin-default: 0.25rem;
+  /* Font */
+  --font-family-default: Arial, Helvetica, sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+  color: var(--color-default-03);
+  font-family: "Glory", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  padding: var(--padding-default);
+  margin: var(--margin-default);
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+/* ボディー */
+body {
+  background-color: var(--color-default-01);
+  color: var(--color-default-03);
+  font-family: var(--font-family-default);
+}
+
+/* このクラスを使用すれば、物事を非表示にします。 */
+.hidden {
+  display: none;
+}
+
+/* ホバー */
+@media (hover: hover) {
+  /* 下に書いてください ↓ */
+}
+
+/* モバイル */
+@media only screen and (max-width: 700px) {
+  /* 下に書いてください ↓ */
+}
