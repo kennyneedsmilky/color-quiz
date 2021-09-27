@@ -22,5 +22,14 @@ export const colorQuizData = [
     },
     {
         color: "black"
+    },
+    {
+        color: "brown"
+    },
+    {
+        color: "gold"
+    },
+    {
+        color: "rainbow"
     }
 ]

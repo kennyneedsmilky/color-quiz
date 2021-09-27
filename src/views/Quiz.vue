@@ -20,8 +20,8 @@
             </div>
         </transition>
         <div v-if="this.showModal" class="quiz__modal">
-            <div v-if="this.correct" class="quiz__modal-txt">✔</div>
-            <div v-else class="quiz__modal-txt">✘</div>
+            <div v-if="this.correct" class="quiz__modal-txt"><i class="icon-right"></i></div>
+            <div v-else class="quiz__modal-txt"><i class="icon-wrong"></i></div>
         </div>
     </div>
 </template>
@@ -226,8 +226,8 @@ export default {
         width: 100%;
     }
 
-    .quiz__modal-txt {
-        color: rgb(255, 255, 255);
+    .quiz__modal-txt i {
+        color: #ffffff;
         text-shadow: 5px 5px 5px #000000;
         font-size: 275px;
     }

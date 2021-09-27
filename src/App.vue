@@ -36,6 +36,8 @@ export default {
 <style>
 @import url("./assets/css/main.css");
 
+@import url("./assets/css/color-quiz.css");
+
 .router-view {
   height: calc(100vh);
 }
