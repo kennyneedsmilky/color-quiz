@@ -41,8 +41,10 @@ export default {
         background-color: var(--color-default-03);
         box-shadow: var(--shadow-button);
         margin: var(--margin-default-01);
-        width: 160px;
-        height: 92px;
+        width: calc(90%);
+        max-width: 160px;
+        height: calc(90%);
+        max-height: 92px;
         color: var(--color-default-01);
         font-size: 24px;
         font-weight: bold;

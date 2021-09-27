@@ -211,6 +211,7 @@ export default {
     .quiz__info-txt {
         font-size: 36px;
         font-weight: bold;
+        text-align: center;
     }
 
     .quiz__modal {
