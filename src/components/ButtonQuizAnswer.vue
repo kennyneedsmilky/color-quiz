@@ -1,6 +1,6 @@
 <template>
     <div class="button-quiz-answer__cont">
-      <button class="button-quiz-answer__button" @click="this.checkAnswer">{{ btnName }}</button>
+      <button class="button-quiz-answer__button" :disabled="disabledBtns" @click="this.checkAnswer">{{ btnName }}</button>
     </div>
 </template>
 
@@ -8,7 +8,8 @@
 export default {
     name: "ButtonQuizAnswer",
     props: {
-        btnName: String
+        btnName: String,
+        disabledBtns: Boolean
     },
     emits: [
         "checkAnswer"
@@ -50,6 +51,10 @@ export default {
     .button-quiz-answer__button:active {
         background-color: var(--color-theme-01);
         box-shadow: var(--shadow-button-hover);
+    }
+
+    .button-quiz-answer__button:disabled {
+        opacity: 0.5;
     }
 
     @media (hover: hover) {

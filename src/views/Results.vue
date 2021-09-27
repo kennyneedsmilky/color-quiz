@@ -3,6 +3,10 @@
       <div class="results__banner">Results</div>
       <p>Your Score is</p>
       <p class="results__quiz-score-label">{{ quizScore }}</p>
+      <p v-if="quizScore === 100">Perfect! Good Job!</p>
+      <p v-else-if="quizScore >= 80">Great!</p>
+      <p v-else-if="quizScore >= 70">Good. Let's try again.</p>
+      <p v-else >You must study more!</p>
       <div class="results__btn-cont">
           <button-generic :btnTxt="'Try Again'" :linkTxt="'/'"></button-generic>
       </div>

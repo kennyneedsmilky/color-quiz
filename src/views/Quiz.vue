@@ -1,20 +1,28 @@
 <template>
     <div class="page__border">
-      <div class="quiz__section">
-          <div class="quiz__pic" :style="[ this.image ? { backgroundImage: 'url(' + require('@/assets/img/' + this.image + '.jpg') + ')' } : {backgroundImage: 'none'} ]"></div>
-      </div>
-      <div class="quiz__section">
-          <p class="quiz__info-txt">Choose the right color.</p>
-          <div class="quiz__sub-section">
-            <button-quiz-answer :btnName="this.answerChoiceA" @check-answer="this.checkAnswer"></button-quiz-answer>
-            <button-quiz-answer :btnName="this.answerChoiceB" @check-answer="this.checkAnswer"></button-quiz-answer>
-          </div>
-          <div class="quiz__sub-section">
-            <button-quiz-answer :btnName="this.answerChoiceC" @check-answer="this.checkAnswer"></button-quiz-answer>
-            <button-quiz-answer :btnName="this.answerChoiceD" @check-answer="this.checkAnswer"></button-quiz-answer>
-          </div>
-          <p class="quiz__info-txt">Question # {{ this.questionsCurrent }} of {{ this.questionsTotal }}</p>
-      </div>
+        <div class="quiz__section">
+            <transition name="fade">
+                <div v-if="this.showImage === true" class="quiz__pic" :style="[ this.image ? { backgroundImage: 'url(' + require('@/assets/img/' + this.image + '.jpg') + ')' } : {backgroundImage: 'none'} ]"></div>
+            </transition>
+        </div>
+        <transition name="fade2">
+            <div v-if="this.showImage === true" class="quiz__section">
+                <p class="quiz__info-txt">Choose the right color.</p>
+                <div class="quiz__sub-section">
+                    <button-quiz-answer :btnName="this.answerChoiceA" :disabledBtns="this.disabledBtns"  @check-answer="this.checkAnswer"></button-quiz-answer>
+                    <button-quiz-answer :btnName="this.answerChoiceB" :disabledBtns="this.disabledBtns"  @check-answer="this.checkAnswer"></button-quiz-answer>
+                </div>
+                <div class="quiz__sub-section">
+                    <button-quiz-answer :btnName="this.answerChoiceC" :disabledBtns="this.disabledBtns" @check-answer="this.checkAnswer"></button-quiz-answer>
+                    <button-quiz-answer :btnName="this.answerChoiceD" :disabledBtns="this.disabledBtns" @check-answer="this.checkAnswer"></button-quiz-answer>
+                </div>
+                <p class="quiz__info-txt">Question # {{ this.questionsCurrent }} of {{ this.questionsTotal }}</p>
+            </div>
+        </transition>
+        <div v-if="this.showModal" class="quiz__modal">
+            <div v-if="this.correct" class="quiz__modal-txt">✔</div>
+            <div v-else class="quiz__modal-txt">✘</div>
+        </div>
     </div>
 </template>
 
@@ -34,6 +42,10 @@ export default {
     },
     data() {
         return {
+            showImage: false,
+            disabledBtns: true,
+            showModal: false,
+            correct: false,
             quizList: null,
             image: "white",
             answerChoiceA: "white",
@@ -73,6 +85,9 @@ export default {
             this.newQuestion();
         },
         newQuestion() {
+            this.showImage = false;
+            this.disabledBtns = true;
+            this.showModal = false;
             // Clear all previous answers
             this.answerChoiceA = "";
             this.answerChoiceB = "";
@@ -105,6 +120,13 @@ export default {
                 usedChoices.push(this.answerChoiceD);
             }
             this.questionsCurrent ++;
+
+            setTimeout(() => {
+                this.showImage = true;
+                setTimeout(() => {
+                    this.disabledBtns = false;
+                }, 1500);
+            }, 1000);
         },
         setRandomColor(usedChoices) {
             let decided = false;
@@ -124,16 +146,28 @@ export default {
         checkAnswer(btnAnswerChoice) {
             // Check to see if the button color matches the picture.
             if(btnAnswerChoice === this.image) {
+                this.correct = true;
                 this.questionsCorrect++;
+            } else {
+                this.correct = false;
             }
 
-            if (this.questionsCurrent < this.questionsTotal) {
-                this.newQuestion();
-            } else {
-                this.$emit("setQuizScore", Math.floor(this.questionsCorrect / this.questionsTotal * 100));
-                this.$emit("quizFinished");
-                this.$router.push("/results");
-            }
+            this.showModal = true;
+
+            setTimeout(() => {
+                if (this.questionsCurrent < this.questionsTotal) {
+                    this.newQuestion();
+                } else {
+                    this.showImage = false;
+                    this.disabledBtns = true;
+                    this.showModal = false;
+                    setTimeout(() => {    
+                        this.$emit("setQuizScore", Math.floor(this.questionsCorrect / this.questionsTotal * 100));
+                        this.$emit("quizFinished");
+                        this.$router.push("/results");
+                    }, 1000);
+                }
+            }, 1000);
         }
     },
     mounted() {
@@ -177,5 +211,48 @@ export default {
     .quiz__info-txt {
         font-size: 36px;
         font-weight: bold;
+    }
+
+    .quiz__modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: #00000060;
+        height: 100%;
+        width: 100%;
+    }
+
+    .quiz__modal-txt {
+        color: rgb(255, 255, 255);
+        text-shadow: 5px 5px 5px #000000;
+        font-size: 275px;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: all 0.5s ease;
+    }
+
+    .fade-enter-from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    .fade-leave-to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    .fade2-enter-active,
+    .fade2-leave-active {
+        transition: all 0.5s ease 0.5s;
+    }
+
+    .fade2-enter-from,
+    .fade2-leave-to {
+        opacity: 0;
     }
 </style>
