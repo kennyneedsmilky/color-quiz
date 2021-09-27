@@ -34,8 +34,15 @@ export default {
         font-weight: bold;
     }
 
-    .button:hover, .button:active {
+    .button:active {
         background-color: var(--color-theme-01);
         box-shadow: var(--shadow-button-hover);
+    }
+
+    @media (hover: hover) {
+        .button:hover {
+            background-color: var(--color-theme-01);
+            box-shadow: var(--shadow-button-hover);
+        }
     }
 </style>

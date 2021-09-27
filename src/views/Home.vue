@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="page__border home">
     <div class="home__title-cont">
       <h2 class="home__title-txt">Color Quiz</h2>
     </div>
@@ -27,11 +27,14 @@ export default {
 </script>
 
 <style scoped>
+  .home {
+    padding: var(--padding-border-reset);
+  }
+
   .home__title-cont, .home__bottom-cont {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.25rem;
     width: 100%;
     height: 50%;
   }

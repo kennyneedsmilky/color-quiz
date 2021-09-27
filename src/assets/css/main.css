@@ -9,6 +9,7 @@
   --color-default-03: #1d1e20;
   --color-theme-01: #4c0fdb;
   /* Padding */
+  --padding-margin-reset: 0;
   --padding-default: 0.25rem;
   /* Border */
   --border-default: 1px solid #ffffff;
