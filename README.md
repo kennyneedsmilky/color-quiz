@@ -1,5 +1,7 @@
 # color-quiz
 
+# https://kennyneedsmilky.github.io/color-quiz_distro
+
 ## Project setup
 ```
 npm install
