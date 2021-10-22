@@ -1,10 +1,11 @@
 <template>
-  <router-view class="router-view" 
-    :isTakingQuiz="this.isTakingQuiz" 
+  <router-view
+    class="router-view"
+    :isTakingQuiz="this.isTakingQuiz"
     :quizTaken="this.quizTaken"
     :quizScore="this.quizScore"
     @ready-quiz="this.readyQuiz"
-    @quiz-finished="this.quizFinished" 
+    @quiz-finished="this.quizFinished"
     @set-quiz-score="this.setQuizScore"
   />
 </template>
@@ -15,8 +16,8 @@ export default {
     return {
       isTakingQuiz: false,
       quizTaken: false,
-      quizScore: 0
-    }
+      quizScore: 0,
+    };
   },
   methods: {
     readyQuiz() {
@@ -27,10 +28,9 @@ export default {
     },
     setQuizScore(finalScore) {
       this.quizScore = finalScore;
-    }
+    },
   },
-}
-
+};
 </script>
 
 <style>
@@ -45,6 +45,6 @@ export default {
 /* Use this to make the pages in router view set right. */
 .page__border {
   padding: var(--padding-default);
-  margin: var( --padding-margin-reset);
+  margin: var(--padding-margin-reset);
 }
 </style>
